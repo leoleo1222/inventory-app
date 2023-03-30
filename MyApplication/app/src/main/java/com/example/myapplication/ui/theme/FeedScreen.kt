@@ -16,14 +16,47 @@ import androidx.compose.ui.tooling.preview.Preview
 import coil.compose.AsyncImage
 
 import kotlinx.serialization.Serializable
+import java.util.Objects
 
 @Serializable
-data class Feed(val id: Int, val image: String, val title: String, val detail: String) {
+data class InventoryItem(
+    val _id: String,
+    val title: String,
+    val description: String,
+    val image: String,
+    val category: String,
+    val location: String,
+    val remark: String
+) {
     companion object {
         val data = listOf(
-            Feed(
-                123, "https://cdn.stocksnap.io/img-thumbs/960w/philadelphia-travel_LPDQBLM2A0.jpg", " COMP ", " discount "
+            InventoryItem(
+                _id = "1",
+                title = "Feed 1",
+                description = "Description 1",
+                image = "image1.png",
+                category = "Category 1",
+                location = "Location 1",
+                remark = "Remark 1"
             ),
+            InventoryItem(
+                _id = "2",
+                title = "Feed 2",
+                description = "Description 2",
+                image = "image2.png",
+                category = "Category 2",
+                location = "Location 2",
+                remark = "Remark 2"
+            ),
+            InventoryItem(
+                _id = "3",
+                title = "Feed 3",
+                description = "Description 3",
+                image = "image3.png",
+                category = "Category 3",
+                location = "Location 3",
+                remark = "Remark 3"
+            )
         )
     }
 }
@@ -31,7 +64,7 @@ data class Feed(val id: Int, val image: String, val title: String, val detail: S
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun FeedScreen(feeds: List<Feed>) {
+fun FeedScreen(feeds: List<InventoryItem>) {
     LazyColumn {
         items(feeds) { feed ->
             Card(
@@ -60,6 +93,6 @@ fun FeedScreen(feeds: List<Feed>) {
 @Composable
 fun FeedPreview() {
 //    InfoDayTheme {
-        FeedScreen(Feed.data)
+//    FeedScreen(InventoryItem.data)
 //    }
 }

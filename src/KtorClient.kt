@@ -1,7 +1,7 @@
 package com.example.myapplication
 
 import com.example.myapplication.KtorClient.httpClient
-import com.example.myapplication.ui.theme.InventoryItem
+import com.example.myapplication.ui.theme.Feed
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.plugins.*
@@ -13,14 +13,15 @@ import io.ktor.serialization.kotlinx.json.*
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class InventoryItem(
-    val _id: String,
-    val title: String,
-    val description: String,
-    val image: String,
-    val category: String,
-    val location: String,
-    val remark: String
+data class HttpBinResponse(
+    val args: Map<String, String>,
+    val data: String,
+    val files: Map<String, String>,
+    val form: Map<String, String>,
+    val headers: Map<String, String>,
+    val json: String?,
+    val origin: String,
+    val url: String
 )
 
 object KtorClient {
@@ -37,13 +38,16 @@ object KtorClient {
         }
         expectSuccess = true
     }
+    suspend fun postFeedback(feedback: String): String {
 
-    suspend fun getInventoryItems(): List<InventoryItem> {
-        return try {
-            httpClient.get("https://comp4107.herokuapp.com/inventory").body()
-        } catch (e: Exception) {
-            println("getInventoryItems Exception: $e")
-            emptyList()
-        }
+        val response: HttpBinResponse = httpClient.post("https://httpbin.org/post") {
+            setBody(feedback)
+        }.body()
+
+        token = response.headers["X-Amzn-Trace-Id"].toString()
+        return response.toString()
+    }
+    suspend fun getFeeds(): List<Feed> {
+        return httpClient.get("https://api.npoint.io/a8cea79c033ace1c8b8b").body()
     }
 }
