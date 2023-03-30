@@ -10,18 +10,6 @@ import io.ktor.client.plugins.logging.*
 import io.ktor.client.request.*
 import io.ktor.http.*
 import io.ktor.serialization.kotlinx.json.*
-import kotlinx.serialization.Serializable
-
-@Serializable
-data class InventoryItem(
-    val _id: String,
-    val title: String,
-    val description: String,
-    val image: String,
-    val category: String,
-    val location: String,
-    val remark: String
-)
 
 object KtorClient {
     private var token: String = ""

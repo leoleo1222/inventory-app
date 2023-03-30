@@ -22,40 +22,34 @@ import java.util.Objects
 data class InventoryItem(
     val _id: String,
     val title: String,
+    val author: String,
+    val year: String,
+    val isbn: String,
     val description: String,
-    val image: String,
     val category: String,
+    val publisher: String,
     val location: String,
-    val remark: String
+    val image: String,
+    val remark: String,
+    val type: String,
+    val borrower: String
 ) {
     companion object {
         val data = listOf(
             InventoryItem(
-                _id = "1",
-                title = "Feed 1",
-                description = "Description 1",
-                image = "image1.png",
-                category = "Category 1",
-                location = "Location 1",
-                remark = "Remark 1"
-            ),
-            InventoryItem(
-                _id = "2",
-                title = "Feed 2",
-                description = "Description 2",
-                image = "image2.png",
-                category = "Category 2",
-                location = "Location 2",
-                remark = "Remark 2"
-            ),
-            InventoryItem(
-                _id = "3",
-                title = "Feed 3",
-                description = "Description 3",
-                image = "image3.png",
-                category = "Category 3",
-                location = "Location 3",
-                remark = "Remark 3"
+                _id = "641bc9fffc13ae6253000a16",
+                title = "61*",
+                author = "Noelyn Labden",
+                year = "2006",
+                isbn = "148830211-1",
+                description = "Aenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.\n\nQuisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros.",
+                category = "Sales",
+                publisher = "Chevrolet",
+                location = "Pass",
+                image = "http://dummyimage.com/113x100.png/ff4444/ffffff",
+                remark = "Diverse empowering task-force",
+                type = "book",
+                borrower = "641c1ad3402648e069017bdb"
             )
         )
     }
@@ -93,6 +87,6 @@ fun FeedScreen(feeds: List<InventoryItem>) {
 @Composable
 fun FeedPreview() {
 //    InfoDayTheme {
-//    FeedScreen(InventoryItem.data)
+    FeedScreen(InventoryItem.data)
 //    }
 }
