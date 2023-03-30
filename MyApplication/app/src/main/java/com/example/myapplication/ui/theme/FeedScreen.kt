@@ -16,44 +16,28 @@ import androidx.compose.ui.tooling.preview.Preview
 import coil.compose.AsyncImage
 
 import kotlinx.serialization.Serializable
-import java.util.Objects
 
 @Serializable
 data class InventoryItem(
-    val _id: String,
-    val title: String,
-    val author: String,
-    val year: String,
-    val isbn: String,
-    val description: String,
-    val category: String,
-    val publisher: String,
-    val location: String,
-    val image: String,
-    val remark: String,
-    val type: String,
-    val borrower: String
-) {
-    companion object {
-        val data = listOf(
-            InventoryItem(
-                _id = "641bc9fffc13ae6253000a16",
-                title = "61*",
-                author = "Noelyn Labden",
-                year = "2006",
-                isbn = "148830211-1",
-                description = "Aenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.\n\nQuisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros.",
-                category = "Sales",
-                publisher = "Chevrolet",
-                location = "Pass",
-                image = "http://dummyimage.com/113x100.png/ff4444/ffffff",
-                remark = "Diverse empowering task-force",
-                type = "book",
-                borrower = "641c1ad3402648e069017bdb"
-            )
-        )
-    }
-}
+    val _id: String = "",
+    val title: String = "",
+    val author: String = "",
+    val year: String = "",
+    val isbn: String = "",
+    val description: String = "",
+    val category: String = "",
+    val publisher: String = "",
+    val location: String = "",
+    val image: String = "",
+    val remark: String = "",
+    val type: String = "",
+    val borrower: String = "",
+    val quantity: Int = 0,
+    val remaining: Int = 0,
+    val amount: Int = 0,
+    val unitPrice: Int = 0,
+    val donatedBy: String = ""
+)
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -86,7 +70,4 @@ fun FeedScreen(feeds: List<InventoryItem>) {
 @Preview(showBackground = true)
 @Composable
 fun FeedPreview() {
-//    InfoDayTheme {
-    FeedScreen(InventoryItem.data)
-//    }
 }

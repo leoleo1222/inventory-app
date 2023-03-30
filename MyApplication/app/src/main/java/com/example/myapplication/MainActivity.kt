@@ -57,13 +57,31 @@ fun DefaultPreview() {
 fun ScaffoldScreen() {
     var selectedItem by remember { mutableStateOf(0) }
     var navController = rememberNavController()
-    val items = listOf("Home")
+    val items = listOf("Game", "Book", "Gift", "Material")
     val snackbarHostState = remember { SnackbarHostState() }
 
-    val inventoryItems = produceState(
+    val inventoryBook = produceState(
         initialValue = listOf<InventoryItem>(),
         producer = {
-            value = getInventoryItems()
+            value = getInventoryItems("book")
+        }
+    )
+    val inventoryGame = produceState(
+        initialValue = listOf<InventoryItem>(),
+        producer = {
+            value = getInventoryItems("game")
+        }
+    )
+    val inventoryGift = produceState(
+        initialValue = listOf<InventoryItem>(),
+        producer = {
+            value = getInventoryItems("gift")
+        }
+    )
+    val inventoryMaterial = produceState(
+        initialValue = listOf<InventoryItem>(),
+        producer = {
+            value = getInventoryItems("material")
         }
     )
 
@@ -107,7 +125,10 @@ fun ScaffoldScreen() {
                 modifier = Modifier.padding(innerPadding),
             ) {
                 when (selectedItem) {
-                    0 -> FeedScreen(inventoryItems.value)
+                    0 -> FeedScreen(inventoryGame.value)
+                    1 -> FeedScreen(inventoryBook.value)
+                    2 -> FeedScreen(inventoryGift.value)
+                    3 -> FeedScreen(inventoryMaterial.value)
                 }
             }
         }

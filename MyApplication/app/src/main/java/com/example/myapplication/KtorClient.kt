@@ -26,9 +26,9 @@ object KtorClient {
         expectSuccess = true
     }
 
-    suspend fun getInventoryItems(): List<InventoryItem> {
+    suspend fun getInventoryItems(type:String): List<InventoryItem> {
         return try {
-            httpClient.get("https://comp4107.herokuapp.com/inventory").body()
+            httpClient.get("https://comp4107.herokuapp.com/inventory?type=$type").body()
         } catch (e: Exception) {
             println("getInventoryItems Exception: $e")
             emptyList()
