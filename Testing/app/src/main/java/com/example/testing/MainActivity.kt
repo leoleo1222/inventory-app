@@ -7,13 +7,15 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.rememberNavController
+import com.example.myapplication.getInventory
+//import com.example.myapplication.getInventory
+//import com.example.myapplication.getInventory
 import com.example.testing.ui.theme.TestingTheme
 
 class MainActivity : ComponentActivity() {
@@ -57,6 +59,13 @@ fun ScaffoldScreen() {
     val items = listOf("List Items", "Search Items", "Login")
     val snackbarHostState = remember { SnackbarHostState() }
 
+//    val inventory = produceState(
+//        initialValue = listOf<Inventory>(),
+//        producer = {
+//            value = getInventory()
+//        }
+//    )
+
     Scaffold(
         topBar = {
             TopAppBar(
@@ -80,8 +89,11 @@ fun ScaffoldScreen() {
                 modifier = Modifier.padding(innerPadding),
             ) {
                 when(selectedItem) {
-                    0 -> InfoPreview()
-                    2 -> LoginView()
+                    0 -> InventoryScreen(Inventory.data)
+                    1 -> SearchView(onSearch = { keyword ->
+                        // Handle search action here
+                    })
+                    2 -> LoginScreen()
                 }
 
             }

@@ -21,6 +21,7 @@ fun SearchPreview() {
 fun SearchView(onSearch: (String) -> Unit) {
     var keyword by remember { mutableStateOf("") }
     Column(modifier = Modifier.padding(16.dp)) {
+        Text("Please enter keyword to search inventory:")
         OutlinedTextField(
             value = keyword,
             onValueChange = { keyword = it },
