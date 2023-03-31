@@ -59,12 +59,13 @@ fun ScaffoldScreen() {
     var navController = rememberNavController()
     val items = listOf("Game", "Book", "Gift", "Material")
     val snackbarHostState = remember { SnackbarHostState() }
-
+    val type by remember { mutableStateOf("game") }
     val inventoryBook = produceState(
         initialValue = listOf<InventoryItem>(),
         producer = {
-            value = getInventoryItems("book")
-        }
+            value = getInventoryItems(type)
+        },
+        key1 = type
     )
     val inventoryGame = produceState(
         initialValue = listOf<InventoryItem>(),
