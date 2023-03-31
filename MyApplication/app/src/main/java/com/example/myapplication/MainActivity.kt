@@ -3,17 +3,17 @@ package com.example.myapplication
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.myapplication.KtorClient.getInventoryItems
@@ -57,9 +57,9 @@ fun DefaultPreview() {
 fun ScaffoldScreen() {
     var selectedItem by remember { mutableStateOf(0) }
     var navController = rememberNavController()
-    val items = listOf("Game", "Book", "Gift", "Material")
+    val items = listOf("Inventory")
     val snackbarHostState = remember { SnackbarHostState() }
-    val type by remember { mutableStateOf("game") }
+    var type by remember { mutableStateOf("book") }
     val inventoryBook = produceState(
         initialValue = listOf<InventoryItem>(),
         producer = {
@@ -67,25 +67,6 @@ fun ScaffoldScreen() {
         },
         key1 = type
     )
-    val inventoryGame = produceState(
-        initialValue = listOf<InventoryItem>(),
-        producer = {
-            value = getInventoryItems("game")
-        }
-    )
-    val inventoryGift = produceState(
-        initialValue = listOf<InventoryItem>(),
-        producer = {
-            value = getInventoryItems("gift")
-        }
-    )
-    val inventoryMaterial = produceState(
-        initialValue = listOf<InventoryItem>(),
-        producer = {
-            value = getInventoryItems("material")
-        }
-    )
-
     Scaffold(
         snackbarHost = { SnackbarHost(snackbarHostState) },
         topBar = {
@@ -105,6 +86,38 @@ fun ScaffoldScreen() {
                         }
                     } else {
                         null
+                    }
+                },
+                actions = {
+                    Row(
+                        horizontalArrangement = Arrangement.End,
+                        verticalAlignment = Alignment.CenterVertically,
+                        modifier = Modifier.fillMaxHeight()
+                    ) {
+                        Button(
+                            onClick = { type = "book" },
+                            modifier = Modifier.padding(8.dp)
+                        ) {
+                            Text(text = "Book")
+                        }
+                        Button(
+                            onClick = { type = "game" },
+                            modifier = Modifier.padding(8.dp)
+                        ) {
+                            Text(text = "Game")
+                        }
+                        Button(
+                            onClick = { type = "gift" },
+                            modifier = Modifier.padding(8.dp)
+                        ) {
+                            Text(text = "Gift")
+                        }
+                        Button(
+                            onClick = { type = "material" },
+                            modifier = Modifier.padding(8.dp)
+                        ) {
+                            Text(text = "Material")
+                        }
                     }
                 }
             )
@@ -126,10 +139,7 @@ fun ScaffoldScreen() {
                 modifier = Modifier.padding(innerPadding),
             ) {
                 when (selectedItem) {
-                    0 -> FeedScreen(inventoryGame.value)
-                    1 -> FeedScreen(inventoryBook.value)
-                    2 -> FeedScreen(inventoryGift.value)
-                    3 -> FeedScreen(inventoryMaterial.value)
+                    0 -> FeedScreen(inventoryBook.value)
                 }
             }
         }
