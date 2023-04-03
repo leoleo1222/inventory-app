@@ -18,7 +18,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class Inventory(
     val _id: String? = null,
-    val title: String?= null,
+    val title: String? = null,
     val author: String? = null,
     val year: String? = null,
     val isbn: String? = null,
@@ -38,22 +38,50 @@ data class Inventory(
 )
 
 @Composable
-fun InventoryScreen(type: String, keyword: String, page: Int, navController: NavController) {
+fun InventoryScreen(type: String, keyword: String, page: String, navController: NavController) {
+    var page by remember { mutableStateOf(1) }
+
     val inventory = produceState(
         initialValue = listOf<Inventory>(),
         producer = {
-            when(type){
-                "" -> value = KtorClient.getInventory("", keyword, page)
-                "book" -> value = KtorClient.getInventory("book", "", page)
-                "game" -> value = KtorClient.getInventory("game", "", page)
-                "gift" -> value = KtorClient.getInventory("gift", "", page)
-                "material" -> value = KtorClient.getInventory("material", "", page)
-                else -> value = KtorClient.getInventory("", "", page)
+            value = when (type) {
+                "" -> KtorClient.getInventory("", keyword, page.toString())
+                "book" -> KtorClient.getInventory("book", "", page.toString())
+                "game" -> KtorClient.getInventory("game", "", page.toString())
+                "gift" -> KtorClient.getInventory("gift", "", page.toString())
+                "material" -> KtorClient.getInventory("material", "", page.toString())
+                else -> KtorClient.getInventory("", "", page.toString())
             }
-        }
+        },
+        key1 = page
     )
 
     Column(Modifier.padding(horizontal = 6.dp)) {
+        Spacer(Modifier.height(16.dp))
+        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
+            Button(
+                onClick = {
+                    if (page > 1) {
+                        page -= 1
+                    }
+                }
+            ) {
+                Text("Previous Page")
+            }
+            Button(
+                onClick = {}
+            ) {
+                Text("Page $page")
+            }
+            Button(
+                onClick = {
+                    page += 1
+                }
+            ) {
+                Text("Next Page")
+            }
+        }
+
         LazyColumn(Modifier.fillMaxSize()) {
             items(inventory.value) { inventoryItem ->
                 Box(
@@ -64,7 +92,7 @@ fun InventoryScreen(type: String, keyword: String, page: Int, navController: Nav
                             Color.LightGray
                         )
                         .clickable {
-                            when(inventoryItem.type) {
+                            when (inventoryItem.type) {
                                 "book" -> navController.navigate("type/book/${inventoryItem._id}")
                                 "game" -> navController.navigate("type/game/${inventoryItem._id}")
                                 "gift" -> navController.navigate("type/gift/${inventoryItem._id}")

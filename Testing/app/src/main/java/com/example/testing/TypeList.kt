@@ -38,7 +38,7 @@ fun TypeScreen(navController: NavHostController) {
                 Column(Modifier.weight(1f)) {
                     rowItems.forEach { inventoryType ->
                         Button(
-                            onClick = { navController.navigate("type/${inventoryType.typeName}") },
+                            onClick = { navController.navigate("type/${inventoryType.typeName}/$page/t") },
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .padding(bottom = 2.dp)
@@ -47,28 +47,6 @@ fun TypeScreen(navController: NavHostController) {
                         }
                     }
                 }
-            }
-        }
-        Spacer(Modifier.height(16.dp))
-        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
-            Button(
-                onClick = {
-                    if (page > 1) {
-                        page -= 1
-                    }
-                }
-            ) {
-                Text("Previous Page")
-            }
-            Button(
-                onClick = {}
-            ) {
-                Text("Page $page")
-            }
-            Button(
-                onClick = { page += 1 }
-            ) {
-                Text("Next Page")
             }
         }
     }
@@ -100,11 +78,12 @@ fun TypeNav(navController: NavHostController, snackbarHostState: SnackbarHostSta
             }
         }
 
-        composable("type/{type}") { backStackEntry ->
+        composable("type/{type}/{page}/{t}") { backStackEntry ->
             val type = backStackEntry.arguments?.getString("type")
+            val page = backStackEntry.arguments?.getString("page")
             Column {
                 TypeScreen(navController)
-                InventoryScreen(type!!, "", 1,navController)
+                InventoryScreen(type!!, "", page!! ,navController)
             }
         }
 
