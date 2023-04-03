@@ -78,49 +78,141 @@ fun showInventoryDetailScreen(navController: NavHostController, id: String, snac
                             text = "Year: ${inventoryItem.year}",
                             modifier = Modifier.padding(start = 16.dp, top = 16.dp)
                         )
-                        Text("ISBN: ${inventoryItem.isbn}")
-                        Text("Description: ${inventoryItem.description}")
-                        Text("Category: ${inventoryItem.category}")
-                        Text("Publisher: ${inventoryItem.publisher}")
-                        Text("Location: ${inventoryItem.location}")
-                        Text("Remark: ${inventoryItem.remark}")
-                        Text("Borrower: ${inventoryItem.borrower}")
+                        Text(
+                            text = "ISBN: ${inventoryItem.isbn}",
+                            modifier = Modifier.padding(start = 16.dp, top = 16.dp)
+                        )
+                        Text(
+                            text = "Description: ${inventoryItem.description}",
+                            modifier = Modifier.padding(start = 16.dp, top = 16.dp)
+                        )
+                        Text(
+                            text = "Category: ${inventoryItem.category}",
+                            modifier = Modifier.padding(start = 16.dp, top = 16.dp)
+                        )
+                        Text(
+                            text = "Publisher: ${inventoryItem.publisher}",
+                            modifier = Modifier.padding(start = 16.dp, top = 16.dp)
+                        )
+                        Text(
+                            text = "Location: ${inventoryItem.location}",
+                            modifier = Modifier.padding(start = 16.dp, top = 16.dp)
+                        )
+                        Text(
+                            text = "Remark: ${inventoryItem.remark}",
+                            modifier = Modifier.padding(start = 16.dp, top = 16.dp)
+                        )
+                        Text(
+                            text = "Borrower: ${inventoryItem.borrower}",
+                            modifier = Modifier.padding(start = 16.dp, top = 16.dp)
+                        )
                         inventoryType = inventoryItem.type!!
                     }
+
                     "game" -> {
-                        Text("ID: ${inventoryItem._id}")
-                        Text("Title: ${inventoryItem.title}")
-                        Text("Description: ${inventoryItem.description}")
-                        Text("Category: ${inventoryItem.category}")
-                        Text("Publisher: ${inventoryItem.publisher}")
-                        Text("Location: ${inventoryItem.location}")
-                        Text("Remark: ${inventoryItem.remark}")
-                        Text("Borrower: ${inventoryItem.borrower}")
+                        Text(
+                            text = "ID: ${inventoryItem._id}",
+                            modifier = Modifier.padding(start = 16.dp, top = 16.dp)
+                        )
+                        Text(
+                            text = "Title: ${inventoryItem.title}",
+                            modifier = Modifier.padding(start = 16.dp, top = 16.dp)
+                        )
+                        Text(
+                            text = "Description: ${inventoryItem.description}",
+                            modifier = Modifier.padding(start = 16.dp, top = 16.dp)
+                        )
+                        Text(
+                            text = "Category: ${inventoryItem.category}",
+                            modifier = Modifier.padding(start = 16.dp, top = 16.dp)
+                        )
+                        Text(
+                            text = "Publisher: ${inventoryItem.publisher}",
+                            modifier = Modifier.padding(start = 16.dp, top = 16.dp)
+                        )
+                        Text(
+                            text = "Location: ${inventoryItem.location}",
+                            modifier = Modifier.padding(start = 16.dp, top = 16.dp)
+                        )
+                        Text(
+                            text = "Remark: ${inventoryItem.remark}",
+                            modifier = Modifier.padding(start = 16.dp, top = 16.dp)
+                        )
+                        Text(
+                            text = "Borrower: ${inventoryItem.borrower}",
+                            modifier = Modifier.padding(start = 16.dp, top = 16.dp)
+                        )
                         inventoryType = inventoryItem.type!!
                     }
 
                     "gift" -> {
-                        Text("ID: ${inventoryItem._id}")
-                        Text("Title: ${inventoryItem.title}")
-                        Text("Description: ${inventoryItem.description}")
-                        Text("Category: ${inventoryItem.category}")
-                        Text("Publisher: ${inventoryItem.publisher}")
-                        Text("Location: ${inventoryItem.location}")
-                        Text("Remark: ${inventoryItem.remark}")
-                        Text("Amount: ${inventoryItem.remaining}")
+                        Text(
+                            text = "ID: ${inventoryItem._id}",
+                            modifier = Modifier.padding(start = 16.dp, top = 16.dp)
+                        )
+                        Text(
+                            text = "Title: ${inventoryItem.title}",
+                            modifier = Modifier.padding(start = 16.dp, top = 16.dp)
+                        )
+                        Text(
+                            text = "Description: ${inventoryItem.description}",
+                            modifier = Modifier.padding(start = 16.dp, top = 16.dp)
+                        )
+                        Text(
+                            text = "Category: ${inventoryItem.category}",
+                            modifier = Modifier.padding(start = 16.dp, top = 16.dp)
+                        )
+                        Text(
+                            text = "Publisher: ${inventoryItem.publisher}",
+                            modifier = Modifier.padding(start = 16.dp, top = 16.dp)
+                        )
+                        Text(
+                            text = "Location: ${inventoryItem.location}",
+                            modifier = Modifier.padding(start = 16.dp, top = 16.dp)
+                        )
+                        Text(
+                            text = "Remark: ${inventoryItem.remark}",
+                            modifier = Modifier.padding(start = 16.dp, top = 16.dp)
+                        )
+                        Text(
+                            text = "Amount: ${inventoryItem.remaining}",
+                            modifier = Modifier.padding(start = 16.dp, top = 16.dp)
+                        )
                         inventoryType = inventoryItem.type!!
                     }
 
                     "material" -> {
-                        Text("ID: ${inventoryItem._id}")
-                        Text("Title: ${inventoryItem.title}")
-                        Text("Description: ${inventoryItem.description}")
-                        Text("Category: ${inventoryItem.category}")
-                        Text("Location: ${inventoryItem.location}")
-                        Text("Remark: ${inventoryItem.remark}")
-                        Text("Amount: ${inventoryItem.remaining}")
+                        Text(
+                            text = "ID: ${inventoryItem._id}",
+                            modifier = Modifier.padding(start = 16.dp, top = 16.dp)
+                        )
+                        Text(
+                            text = "Title: ${inventoryItem.title}",
+                            modifier = Modifier.padding(start = 16.dp, top = 16.dp)
+                        )
+                        Text(
+                            text = "Description: ${inventoryItem.description}",
+                            modifier = Modifier.padding(start = 16.dp, top = 16.dp)
+                        )
+                        Text(
+                            text = "Category: ${inventoryItem.category}",
+                            modifier = Modifier.padding(start = 16.dp, top = 16.dp)
+                        )
+                        Text(
+                            text = "Location: ${inventoryItem.location}",
+                            modifier = Modifier.padding(start = 16.dp, top = 16.dp)
+                        )
+                        Text(
+                            text = "Remark: ${inventoryItem.remark}",
+                            modifier = Modifier.padding(start = 16.dp, top = 16.dp)
+                        )
+                        Text(
+                            text = "Amount: ${inventoryItem.remaining}",
+                            modifier = Modifier.padding(start = 16.dp, top = 16.dp)
+                        )
                         inventoryType = inventoryItem.type!!
                     }
+
                 }
 
                 Spacer(modifier = Modifier.height(16.dp))

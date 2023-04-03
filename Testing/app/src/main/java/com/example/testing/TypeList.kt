@@ -3,8 +3,7 @@ package com.example.testing
 import android.widget.Button
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.produceState
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
@@ -25,9 +24,9 @@ data class InventoryType(val typeName: String) {
         )
     }
 }
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TypeScreen(navController: NavHostController) {
+    var page by remember { mutableStateOf(1) }
 
     Column(Modifier.padding(4.dp)) {
         if(inventoryType == ""){
@@ -39,7 +38,7 @@ fun TypeScreen(navController: NavHostController) {
                 Column(Modifier.weight(1f)) {
                     rowItems.forEach { inventoryType ->
                         Button(
-                            onClick = { navController.navigate("type/${inventoryType.typeName}") },
+                            onClick = { navController.navigate("type/${inventoryType.typeName}/$page/t") },
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .padding(bottom = 2.dp)
@@ -52,6 +51,7 @@ fun TypeScreen(navController: NavHostController) {
         }
     }
 }
+
 
 @Composable
 fun backtoTypeButton(navController: NavHostController){
@@ -78,25 +78,12 @@ fun TypeNav(navController: NavHostController, snackbarHostState: SnackbarHostSta
             }
         }
 
-        composable("type/{type}") { backStackEntry ->
+        composable("type/{type}/{page}/{t}") { backStackEntry ->
             val type = backStackEntry.arguments?.getString("type")
+            val page = backStackEntry.arguments?.getString("page")
             Column {
                 TypeScreen(navController)
-                InventoryScreen(type!!, "", 1,navController)
-                Row(
-                    horizontalArrangement = Arrangement.SpaceEvenly,
-//                    modifier = Modifier.fillMaxWidth()
-                ) {
-                    Button(onClick = { /* Do something */ }) {
-                        Text("Button 1")
-                    }
-                    Button(onClick = { /* Do something */ }) {
-                        Text("Button 2")
-                    }
-                    Button(onClick = { /* Do something */ }) {
-                        Text("Button 3")
-                    }
-                }
+                InventoryScreen(type!!, "", page!! ,navController)
             }
         }
 

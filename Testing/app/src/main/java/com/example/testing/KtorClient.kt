@@ -31,12 +31,12 @@ object KtorClient {
 
     val httpClient = HttpClient {
         install(ContentNegotiation) {
-                json (Json {
-                    explicitNulls = false
-                    ignoreUnknownKeys = true
-                    isLenient = true
-                }
-                )
+            json (Json {
+                explicitNulls = false
+                ignoreUnknownKeys = true
+                isLenient = true
+            }
+            )
         }
         install(Logging)
         defaultRequest {
@@ -131,11 +131,11 @@ object KtorClient {
 
         return response
     }
-    suspend fun getInventory(type : String?, keyword : String?, page: Int = 1): List<Inventory> {
+    suspend fun getInventory(type : String?, keyword : String?, page: String): List<Inventory> {
         val testUrl : String = if(type != "") {
-            "https://comp4107.herokuapp.com/inventory?type=$type &page=$page"
+            "https://comp4107.herokuapp.com/inventory?type=$type&page=$page"
         } else {
-            "https://comp4107.herokuapp.com/inventory?keyword=$keyword &page=$page"
+            "https://comp4107.herokuapp.com/inventory?keyword=$keyword&page=$page"
         }
         Log.d("testUrl", testUrl)
         return httpClient.get(testUrl).body()

@@ -16,6 +16,7 @@ import androidx.navigation.compose.composable
 @Composable
 fun SearchScreen(navController: NavHostController) {
     var keyword by remember { mutableStateOf("") }
+    var page by remember { mutableStateOf(1) }
 
     Column(modifier = Modifier.padding(16.dp)) {
         Text("Please enter keyword to search inventory:")
@@ -28,25 +29,37 @@ fun SearchScreen(navController: NavHostController) {
         Spacer(modifier = Modifier.height(16.dp))
         Button(
             onClick = {
-                navController.navigate("search/${keyword}")
+                navController.navigate("search/${keyword}/page/t")
             },
             modifier = Modifier.fillMaxWidth()
         ) {
             Text("Search")
         }
-    }
-}
 
-@Composable
-fun backtoSearchButton(navController: NavHostController){
-    Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.End) {
-        Button(
-            onClick = {
-                navController.navigate("search/${keywordHistory}")
-            },
-        ) {
-            Text("Back to List Items")
-        }
+//        Spacer(Modifier.height(16.dp))
+//        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
+//            Button(
+//                onClick = {
+//                    if (page > 1) {
+//                        page -= 1
+//                    }
+//                }
+//            ) {
+//                Text("Previous Page")
+//            }
+//            Button(
+//                onClick = {}
+//            ) {
+//                Text("Page $page")
+//            }
+//            Button(
+//                onClick = {
+//                    page += 1
+//                }
+//            ) {
+//                Text("Next Page")
+//            }
+//        }
     }
 }
 
@@ -63,13 +76,16 @@ fun SearchNav(navController: NavHostController, snackbarHostState: SnackbarHostS
             }
         }
 
-        composable("search/{keyword}"){ backStackEntry ->
+        composable("search/{keyword}/{page}/{t}"){ backStackEntry ->
             val keyword = backStackEntry.arguments?.getString("keyword")
+            val page = backStackEntry.arguments?.getString("page")
+
             keywordHistory = keyword.toString()
             Column {
                 SearchScreen(navController)
                 if (keyword != null) {
-                    InventoryScreen("", keyword, 1,navController)
+//                    InventoryScreen("", keyword, "1",navController)
+                    InventoryScreen("", "", page!! ,navController)
                 }
             }
         }
@@ -80,7 +96,7 @@ fun SearchNav(navController: NavHostController, snackbarHostState: SnackbarHostS
                 if (id != null) {
                     Column() {
                         showInventoryDetailScreen(navController, id, snackbarHostState)
-                        backtoSearchButton(navController)
+//                        backtoSearchButton(navController)
                     }
                 }
             }
