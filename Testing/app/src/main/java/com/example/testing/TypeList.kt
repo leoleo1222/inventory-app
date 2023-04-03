@@ -3,8 +3,7 @@ package com.example.testing
 import android.widget.Button
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.produceState
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
@@ -25,9 +24,9 @@ data class InventoryType(val typeName: String) {
         )
     }
 }
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TypeScreen(navController: NavHostController) {
+    var page by remember { mutableStateOf(1) }
 
     Column(Modifier.padding(4.dp)) {
         if(inventoryType == ""){
@@ -50,8 +49,31 @@ fun TypeScreen(navController: NavHostController) {
                 }
             }
         }
+        Spacer(Modifier.height(16.dp))
+        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
+            Button(
+                onClick = {
+                    if (page > 1) {
+                        page -= 1
+                    }
+                }
+            ) {
+                Text("Previous Page")
+            }
+            Button(
+                onClick = {}
+            ) {
+                Text("Page $page")
+            }
+            Button(
+                onClick = { page += 1 }
+            ) {
+                Text("Next Page")
+            }
+        }
     }
 }
+
 
 @Composable
 fun backtoTypeButton(navController: NavHostController){
@@ -83,20 +105,6 @@ fun TypeNav(navController: NavHostController, snackbarHostState: SnackbarHostSta
             Column {
                 TypeScreen(navController)
                 InventoryScreen(type!!, "", 1,navController)
-                Row(
-                    horizontalArrangement = Arrangement.SpaceEvenly,
-//                    modifier = Modifier.fillMaxWidth()
-                ) {
-                    Button(onClick = { /* Do something */ }) {
-                        Text("Button 1")
-                    }
-                    Button(onClick = { /* Do something */ }) {
-                        Text("Button 2")
-                    }
-                    Button(onClick = { /* Do something */ }) {
-                        Text("Button 3")
-                    }
-                }
             }
         }
 
