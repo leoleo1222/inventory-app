@@ -69,7 +69,7 @@ fun SearchNav(navController: NavHostController, snackbarHostState: SnackbarHostS
             Column {
                 SearchScreen(navController)
                 if (keyword != null) {
-                    InventoryScreen("", keyword, navController)
+                    InventoryScreen("", keyword, 1,navController)
                 }
             }
         }
