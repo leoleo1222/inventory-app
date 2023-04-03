@@ -111,6 +111,5 @@ fun InventoryScreen(type: String, keyword: String, navController: NavController)
                 }
             }
         }
-
     }
 }
