@@ -10,12 +10,15 @@ import io.ktor.client.plugins.logging.*
 import io.ktor.client.request.*
 import io.ktor.http.*
 import io.ktor.serialization.kotlinx.json.*
+import kotlinx.serialization.json.Json
 
 object KtorClient {
     private var token: String = ""
     val httpClient = HttpClient {
         install(ContentNegotiation) {
-            json() // enable the client to perform JSON serialization
+            json(Json{
+                explicitNulls = false
+            }) // enable the client to perform JSON serialization
         }
         install(Logging)
         defaultRequest {
@@ -28,9 +31,10 @@ object KtorClient {
 
     suspend fun getInventoryItems(type:String): List<InventoryItem> {
         return try {
-            httpClient.get("https://comp4107.herokuapp.com/inventory?type=$type").body()
+            httpClient.get("https://comp4107.herokuapp.com/inventory?&type=$type").body()
         } catch (e: Exception) {
             println("getInventoryItems Exception: $e")
+            println(e.printStackTrace())
             emptyList()
         }
     }

@@ -33,7 +33,7 @@ data class InventoryItem(
     val type: String = "",
     val borrower: String = "",
     val quantity: Int = 0,
-    val remaining: Int = 0,
+    val remaining: Int?,
     val amount: Int = 0,
     val unitPrice: Int = 0,
     val donatedBy: String = ""
