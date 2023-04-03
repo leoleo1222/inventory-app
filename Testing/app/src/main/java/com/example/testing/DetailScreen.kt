@@ -60,70 +60,6 @@ fun showInventoryDetailScreen(navController: NavHostController, id: String, snac
                         .padding(start = 16.dp)
                 )
 
-                when(inventoryItem.type){
-                    "book" -> {
-                        Text(
-                            text = "ID: ${inventoryItem._id}",
-                            modifier = Modifier.padding(start = 16.dp, top = 16.dp)
-                        )
-                        Text(
-                            text = "Title: ${inventoryItem.title}",
-                            modifier = Modifier.padding(start = 16.dp, top = 16.dp)
-                        )
-                        Text(
-                            text = "Author: ${inventoryItem.author}",
-                            modifier = Modifier.padding(start = 16.dp, top = 16.dp)
-                        )
-                        Text(
-                            text = "Year: ${inventoryItem.year}",
-                            modifier = Modifier.padding(start = 16.dp, top = 16.dp)
-                        )
-                        Text("ISBN: ${inventoryItem.isbn}")
-                        Text("Description: ${inventoryItem.description}")
-                        Text("Category: ${inventoryItem.category}")
-                        Text("Publisher: ${inventoryItem.publisher}")
-                        Text("Location: ${inventoryItem.location}")
-                        Text("Remark: ${inventoryItem.remark}")
-                        Text("Borrower: ${inventoryItem.borrower}")
-                        inventoryType = inventoryItem.type!!
-                    }
-                    "game" -> {
-                        Text("ID: ${inventoryItem._id}")
-                        Text("Title: ${inventoryItem.title}")
-                        Text("Description: ${inventoryItem.description}")
-                        Text("Category: ${inventoryItem.category}")
-                        Text("Publisher: ${inventoryItem.publisher}")
-                        Text("Location: ${inventoryItem.location}")
-                        Text("Remark: ${inventoryItem.remark}")
-                        Text("Borrower: ${inventoryItem.borrower}")
-                        inventoryType = inventoryItem.type!!
-                    }
-
-                    "gift" -> {
-                        Text("ID: ${inventoryItem._id}")
-                        Text("Title: ${inventoryItem.title}")
-                        Text("Description: ${inventoryItem.description}")
-                        Text("Category: ${inventoryItem.category}")
-                        Text("Publisher: ${inventoryItem.publisher}")
-                        Text("Location: ${inventoryItem.location}")
-                        Text("Remark: ${inventoryItem.remark}")
-                        Text("Amount: ${inventoryItem.remaining}")
-                        inventoryType = inventoryItem.type!!
-                    }
-
-                    "material" -> {
-                        Text("ID: ${inventoryItem._id}")
-                        Text("Title: ${inventoryItem.title}")
-                        Text("Description: ${inventoryItem.description}")
-                        Text("Category: ${inventoryItem.category}")
-                        Text("Location: ${inventoryItem.location}")
-                        Text("Remark: ${inventoryItem.remark}")
-                        Text("Amount: ${inventoryItem.remaining}")
-                        inventoryType = inventoryItem.type!!
-                    }
-                }
-
-                Spacer(modifier = Modifier.height(16.dp))
                 Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.End) {
                     when(inventoryItem.type){
                         "book", "game" -> {
@@ -211,6 +147,69 @@ fun showInventoryDetailScreen(navController: NavHostController, id: String, snac
                         }
                     }
 
+                }
+
+                when(inventoryItem.type){
+                    "book" -> {
+                        Text(
+                            text = "ID: ${inventoryItem._id}",
+                            modifier = Modifier.padding(start = 16.dp, top = 16.dp)
+                        )
+                        Text(
+                            text = "Title: ${inventoryItem.title}",
+                            modifier = Modifier.padding(start = 16.dp, top = 16.dp)
+                        )
+                        Text(
+                            text = "Author: ${inventoryItem.author}",
+                            modifier = Modifier.padding(start = 16.dp, top = 16.dp)
+                        )
+                        Text(
+                            text = "Year: ${inventoryItem.year}",
+                            modifier = Modifier.padding(start = 16.dp, top = 16.dp)
+                        )
+                        Text("ISBN: ${inventoryItem.isbn}")
+                        Text("Description: ${inventoryItem.description}")
+                        Text("Category: ${inventoryItem.category}")
+                        Text("Publisher: ${inventoryItem.publisher}")
+                        Text("Location: ${inventoryItem.location}")
+                        Text("Remark: ${inventoryItem.remark}")
+                        Text("Borrower: ${inventoryItem.borrower}")
+                        inventoryType = inventoryItem.type!!
+                    }
+                    "game" -> {
+                        Text("ID: ${inventoryItem._id}")
+                        Text("Title: ${inventoryItem.title}")
+                        Text("Description: ${inventoryItem.description}")
+                        Text("Category: ${inventoryItem.category}")
+                        Text("Publisher: ${inventoryItem.publisher}")
+                        Text("Location: ${inventoryItem.location}")
+                        Text("Remark: ${inventoryItem.remark}")
+                        Text("Borrower: ${inventoryItem.borrower}")
+                        inventoryType = inventoryItem.type!!
+                    }
+
+                    "gift" -> {
+                        Text("ID: ${inventoryItem._id}")
+                        Text("Title: ${inventoryItem.title}")
+                        Text("Description: ${inventoryItem.description}")
+                        Text("Category: ${inventoryItem.category}")
+                        Text("Publisher: ${inventoryItem.publisher}")
+                        Text("Location: ${inventoryItem.location}")
+                        Text("Remark: ${inventoryItem.remark}")
+                        Text("Amount: ${inventoryItem.remaining}")
+                        inventoryType = inventoryItem.type!!
+                    }
+
+                    "material" -> {
+                        Text("ID: ${inventoryItem._id}")
+                        Text("Title: ${inventoryItem.title}")
+                        Text("Description: ${inventoryItem.description}")
+                        Text("Category: ${inventoryItem.category}")
+                        Text("Location: ${inventoryItem.location}")
+                        Text("Remark: ${inventoryItem.remark}")
+                        Text("Amount: ${inventoryItem.remaining}")
+                        inventoryType = inventoryItem.type!!
+                    }
                 }
             }
         }

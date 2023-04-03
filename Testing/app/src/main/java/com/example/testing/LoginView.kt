@@ -69,7 +69,7 @@ fun LoginScreen(snackbarHostState: SnackbarHostState) {
                 coroutineScope.launch {
                     var data = LoginRequest(email, password)
                     var stringBody: String = KtorClient.login(data)
-                    WelcomeText = "Welcome Back \n\n" + first_name + " " + last_name
+                    WelcomeText = "Welcome Back \n\n$first_name $last_name"
                     snackbarHostState.showSnackbar(stringBody)
                 }
             },
