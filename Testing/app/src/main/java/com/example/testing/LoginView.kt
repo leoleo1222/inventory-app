@@ -1,11 +1,9 @@
 package com.example.testing
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
-import androidx.compose.material3.Button
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.Text
+import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -15,19 +13,42 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.myapplication.KtorClient
+import com.example.myapplication.Logined
+import com.example.myapplication.first_name
+import com.example.myapplication.last_name
+//import com.example.myapplication.token
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.launch
+import kotlinx.serialization.Serializable
+
+@Serializable
+data class LoginRequest(
+    val email: String?,
+    val password: String?,
+)
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun LoginView() {
+fun LoginScreen(snackbarHostState: SnackbarHostState) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
+    val coroutineScope = rememberCoroutineScope()
+    var WelcomeText by remember { mutableStateOf("Please Sign In") }
 
     Column(
         modifier = Modifier
             .fillMaxSize()
             .padding(horizontal = 16.dp),
-        verticalArrangement = Arrangement.Center
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
+
+        Text(text = WelcomeText, fontSize = 30.sp)
+
+        InfoGreeting()
         OutlinedTextField(
             value = email,
             onValueChange = { email = it },
@@ -44,7 +65,18 @@ fun LoginView() {
         )
 
         Button(
-            onClick = { /* TODO: Perform login */ },
+            onClick = {
+                //akenworth1@prlog.org
+                //123456
+                Log.d("Debug", email)
+                Log.d("Debug", password)
+                coroutineScope.launch {
+                    var data = LoginRequest(email, password)
+                    var stringBody: String = KtorClient.login(data)
+                    WelcomeText = "Welcome Back \n\n" + first_name + " " + last_name
+                    snackbarHostState.showSnackbar(stringBody)
+                }
+            },
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(vertical = 16.dp)
@@ -69,19 +101,3 @@ fun InfoGreeting() {
     }
 }
 
-@Composable
-fun LoginScreen(){
-    Column {
-        InfoGreeting()
-        LoginView()
-    }
-}
-
-@Preview
-@Composable
-fun LoginPreview(){
-    Column {
-        InfoGreeting()
-        LoginView()
-    }
-}
