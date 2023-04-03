@@ -82,7 +82,7 @@ fun TypeNav(navController: NavHostController, snackbarHostState: SnackbarHostSta
             val type = backStackEntry.arguments?.getString("type")
             Column {
                 TypeScreen(navController)
-                InventoryScreen(type!!, "", navController)
+                InventoryScreen(type!!, "", 1,navController)
                 Row(
                     horizontalArrangement = Arrangement.SpaceEvenly,
 //                    modifier = Modifier.fillMaxWidth()

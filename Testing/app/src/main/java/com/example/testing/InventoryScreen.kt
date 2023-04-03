@@ -12,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -34,44 +35,20 @@ data class Inventory(
     val amount: Int? = null,
     val unitPrice: Int? = null,
     val remaining: Int? = null,
-){
-    companion object{
-        val data = listOf(
-            "1234",
-            "The Great Gatsby",
-            "F. Scott Fitzgerald",
-            "1925",
-            "9781781396847",
-            "The story primarily concerns the young and mysterious millionaire Jay Gatsby and his quixotic passion and obsession for the beautiful former debutante Daisy Buchanan.",
-            "Classic Literature",
-            "Charles Scribner's Sons",
-            "New York",
-            "https://example.com/great-gatsby.jpg",
-            "",
-            "Book",
-            "",
-            5,
-            "John Doe",
-            50,
-            10,
-            5
-        )
-    }
-}
+)
 
 @Composable
-fun InventoryScreen(type: String, keyword: String, navController: NavController) {
+fun InventoryScreen(type: String, keyword: String, page: Int, navController: NavController) {
     val inventory = produceState(
         initialValue = listOf<Inventory>(),
         producer = {
-//            value = KtorClient.getInventory(id)
             when(type){
-                "" -> value = KtorClient.getInventory("", keyword)
-                "book" -> value = KtorClient.getInventory("book", "")
-                "game" -> value = KtorClient.getInventory("game", "")
-                "gift" -> value = KtorClient.getInventory("gift", "")
-                "material" -> value = KtorClient.getInventory("material", "")
-                else -> value = KtorClient.getInventory("", "")
+                "" -> value = KtorClient.getInventory("", keyword, page)
+                "book" -> value = KtorClient.getInventory("book", "", page)
+                "game" -> value = KtorClient.getInventory("game", "", page)
+                "gift" -> value = KtorClient.getInventory("gift", "", page)
+                "material" -> value = KtorClient.getInventory("material", "", page)
+                else -> value = KtorClient.getInventory("", "", page)
             }
         }
     )
