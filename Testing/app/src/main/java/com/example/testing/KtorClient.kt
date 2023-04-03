@@ -50,7 +50,7 @@ object KtorClient {
 
     suspend fun login(testing: LoginRequest): String{
         var message : String
-        var response: LoginResponse? = null
+        val response: LoginResponse?
 
         try{
             // Token-based
@@ -64,7 +64,7 @@ object KtorClient {
             token = response?.token.toString()
             Logined = true
 
-            message = "Login Successfully !\nToken: " + token
+            message = "Login Successfully !\nToken: $token"
             Log.d("Login response", message)
 
         }catch(e: Exception){
@@ -76,11 +76,11 @@ object KtorClient {
 
     suspend fun borrowBook(itemID : String) : String? {
 
-        var response: String? = null
+        var response: String?
         try{
             // Token-based
             Log.d("\tBorrow Debug", "TESTING...")
-            response = httpClient.post("https://comp4107.herokuapp.com/user/borrow/" + itemID) {
+            response = httpClient.post("https://comp4107.herokuapp.com/user/borrow/$itemID") {
 //                setBody()
             }.body()
 
@@ -96,11 +96,11 @@ object KtorClient {
 
     suspend fun returnBook(itemID : String) : String? {
 
-        var response: String? = null
+        var response: String?
         try{
             // Token-based
             Log.d("\tReturn Debug", "TESTING...")
-            response = httpClient.post("https://comp4107.herokuapp.com/user/return/" + itemID) {
+            response = httpClient.post("https://comp4107.herokuapp.com/user/return/$itemID") {
 //                setBody()
             }.body()
 
@@ -116,10 +116,10 @@ object KtorClient {
 
 
     suspend fun conusmeItem (itemID : String) : String? {
-        var response: String? = null
+        var response: String?
         try{
             Log.d("\tConsume Debug", "TESTING...")
-            response = httpClient.post("https://comp4107.herokuapp.com/user/consume/" + itemID) {
+            response = httpClient.post("https://comp4107.herokuapp.com/user/consume/$itemID") {
             }.body()
 
             Log.d("Consume response", response.toString())
@@ -131,19 +131,18 @@ object KtorClient {
 
         return response
     }
-    suspend fun getInventory(type : String?, keyword : String?): List<Inventory> {
-        var testUrl : String
-        if(type != "") {
-            testUrl = "https://comp4107.herokuapp.com/inventory?type=" + type
+    suspend fun getInventory(type : String?, keyword : String?, page: Int = 1): List<Inventory> {
+        val testUrl : String = if(type != "") {
+            "https://comp4107.herokuapp.com/inventory?type=$type &page=$page"
         } else {
-            testUrl = "https://comp4107.herokuapp.com/inventory?keyword=" + keyword
+            "https://comp4107.herokuapp.com/inventory?keyword=$keyword &page=$page"
         }
         Log.d("testUrl", testUrl)
         return httpClient.get(testUrl).body()
     }
 
     suspend fun getInventoryDetail(itemID: String): Inventory {
-        val testUrl = "https://comp4107.herokuapp.com/inventory/" + itemID
+        val testUrl = "https://comp4107.herokuapp.com/inventory/$itemID"
         Log.d("testUrl", testUrl)
         return httpClient.get(testUrl).body()
     }
