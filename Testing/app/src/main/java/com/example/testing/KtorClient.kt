@@ -1,19 +1,14 @@
-package com.example.myapplication
+package com.example.testing
 
-import android.provider.ContactsContract.CommonDataKinds.Email
 import android.util.Log
-import com.example.myapplication.KtorClient.httpClient
-import com.example.testing.*
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.plugins.*
 import io.ktor.client.plugins.contentnegotiation.*
-import io.ktor.client.plugins.kotlinx.serializer.*
 import io.ktor.client.plugins.logging.*
 import io.ktor.client.request.*
 import io.ktor.http.*
 import io.ktor.serialization.kotlinx.json.*
-import kotlinx.coroutines.launch
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 

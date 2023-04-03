@@ -13,10 +13,6 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.myapplication.KtorClient
-import com.example.myapplication.Logined
-import com.example.myapplication.first_name
-import com.example.myapplication.last_name
 //import com.example.myapplication.token
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

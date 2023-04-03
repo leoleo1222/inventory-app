@@ -12,14 +12,9 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
-import com.example.myapplication.KtorClient
-import com.example.myapplication.Logined
-import com.example.myapplication.inventoryType
 import kotlinx.coroutines.launch
 
 @Composable
@@ -39,14 +34,21 @@ fun showInventoryDetailScreen(navController: NavHostController, id: String, snac
 
     Column(modifier = Modifier.padding(24.dp), horizontalAlignment = Alignment.Start) {
 
-//        AsyncImage(
-//            model = book.image,
-//            contentDescription = null
-//        )
+        AsyncImage(
+            model = inventoryItem.image,
+            contentDescription = null,
+            modifier = Modifier
+                .height(200.dp)
+                .fillMaxSize()
+                .padding(start = 16.dp)
+        )
 
         when(inventoryItem.type){
             "book" -> {
-                Text("ID: ${inventoryItem._id}")
+                Text(
+                    text = "ID: ${inventoryItem._id}",
+                    modifier = Modifier.padding(top = 16.dp)
+                )
                 Text("Title: ${inventoryItem.title}")
                 Text("Author: ${inventoryItem.author}")
                 Text("Year: ${inventoryItem.year}")
@@ -56,6 +58,7 @@ fun showInventoryDetailScreen(navController: NavHostController, id: String, snac
                 Text("Publisher: ${inventoryItem.publisher}")
                 Text("Location: ${inventoryItem.location}")
                 Text("Remark: ${inventoryItem.remark}")
+                Text("Borrower: ${inventoryItem.borrower}")
                 inventoryType = inventoryItem.type!!
             }
             "game" -> {
@@ -66,6 +69,7 @@ fun showInventoryDetailScreen(navController: NavHostController, id: String, snac
                 Text("Publisher: ${inventoryItem.publisher}")
                 Text("Location: ${inventoryItem.location}")
                 Text("Remark: ${inventoryItem.remark}")
+                Text("Borrower: ${inventoryItem.borrower}")
                 inventoryType = inventoryItem.type!!
             }
 

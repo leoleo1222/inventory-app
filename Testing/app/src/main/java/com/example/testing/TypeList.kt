@@ -10,8 +10,6 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.example.myapplication.KtorClient
-import com.example.myapplication.inventoryType
 //import com.example.myapplication.KtorClient.httpClient
 //import com.example.myapplication.getInventory
 import io.ktor.client.call.*
